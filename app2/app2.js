@@ -13,5 +13,5 @@ submitButton.addEventListener('click', () => {
     }
     let imc = weightValue / (Math.pow(heightValue,2))
     imc = imc.toFixed(1)
-    answer.innerText = `Votre IMC est de ${imc}`
+    answer.innerText = `You have a BMI of ${imc}`
 })
