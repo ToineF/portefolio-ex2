@@ -7,11 +7,21 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <div class="grid h-screen justify-center items-center">
+    <div class="flex h-screen flex-col items-center gap-10 p-20">
         <div>
-            <input class="border-2 rounded border-pink-400 p-2 bg-white hover:bg-pink-300">
-            <button class="border-2 rounded border-pink-400 p-2 bg-white hover:bg-pink-300">Hello</button>
+            <input id="input" class="border-2 rounded border-pink-400 p-2 bg-white hover:bg-pink-300">
+            <button id="addButton" class="border-2 rounded border-pink-400 p-2 bg-white hover:bg-pink-300">
+                Hello
+            </button>
         </div>
+        <div id="todoContainer">
+        </div>
+        <a href="../index.html">
+            <div class="flex justify-center items-center border-4 border-gray-700 bg-gray-200 mb-10">
+                <p class="p-4 text-gray-700 font-bold">Return to menu</p>
+            </div>
+        </a>
     </div>
+    <script src="app3.js"></script>
 </body>
 </html>
