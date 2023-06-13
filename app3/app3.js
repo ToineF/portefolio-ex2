@@ -4,14 +4,6 @@ const todoContainer = document.querySelector("#todoContainer")
 let todoArray = []
 let todoDIVArray=[]
 
-// const div0 = document.querySelector("#div0")
-
-// div0.children[0].addEventListener('change', () => {
-//     div0.children[0].checked ? div0.children[1].className = "line-through" : div0.children[1].className = ""
-//     console.log("hey")
-// })
-
-
 
 function todoTemplate(todo) {
     return `<div class="flex gap-2 todo">
@@ -33,11 +25,19 @@ function todoUpdate() {
     todoDIVArray.forEach((todo,index) => {
         const deleteButton = todo.children[0]
         const checkbox = todo.children[1]
+        const line = todo.children[2].innerText
         deleteButton.addEventListener('click', () => {
             todoDIVArray.splice(index,1)
             todoArray.splice(index,1)
             todoUpdate()
-            console.log(todoDIVArray)
+        })
+        checkbox.addEventListener('click', () => {
+            const newTodo = {
+                todo: line,
+                completed: checkbox.checked
+            }
+            todoArray[index] = todoTemplate(newTodo)
+            todoUpdate()
         })
     })
 }
