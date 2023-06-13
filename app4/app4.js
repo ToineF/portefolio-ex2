@@ -28,6 +28,14 @@ function toBase16(value) {
     return `${tens}${unit}`
 }
 
+function wingame() {
+    HexText.innerText = randRGB.Hex + "\nYou win!"
+    HexText.style.color = `rgb(${randRGB.red},${randRGB.green},${randRGB.blue})`
+    colArray.forEach((color) => {
+        color.disabled = true;
+    })
+}
+
 modeButtons.forEach(button => {
     button.addEventListener('click', () => {
         colorNumber = button.id.slice(-1)
@@ -50,8 +58,7 @@ colArray.forEach((color, index) => {
 
     color.addEventListener("click", () => {
         if (index === randColor) {
-            HexText.innerText = randRGB.Hex + "\nYou win!"
-            HexText.style.color = `rgb(${randRGB.red},${randRGB.green},${randRGB.blue})`
+            wingame()
         } else {
             color.style.backgroundColor = 'rgb(255,255,255)'
             color.disabled = true;
