@@ -2,7 +2,7 @@ const input = document.querySelector("#input")
 const addButton = document.querySelector("#addButton")
 const todoContainer = document.querySelector("#todoContainer")
 let todoArray = []
-let checkboxArray=[]
+let todoDIVArray=[]
 
 // const div0 = document.querySelector("#div0")
 
@@ -14,8 +14,6 @@ let checkboxArray=[]
 
 
 function todoTemplate(todo) {
-    // todoArray.push(todo)
-    // checkboxArray.push(todo.completed)
     return `<div class="flex gap-2 todo">
                 <button class="text-red-500">
                     <img class="h-4" src="https://cdn2.iconfinder.com/data/icons/thin-line-color-1/21/33-512.png">
@@ -31,6 +29,17 @@ function todoUpdate() {
     todoArray.forEach(todo => {
         todoContainer.innerHTML += todo
     })
+    todoDIVArray = Array.from(document.querySelectorAll(".todo"))
+    todoDIVArray.forEach((todo,index) => {
+        const deleteButton = todo.children[0]
+        const checkbox = todo.children[1]
+        deleteButton.addEventListener('click', () => {
+            todoDIVArray.splice(index,1)
+            todoArray.splice(index,1)
+            todoUpdate()
+            console.log(todoDIVArray)
+        })
+    })
 }
 
 
@@ -42,7 +51,6 @@ fetch("https://dummyjson.com/todos")
         todoArray.push(todoTemplate(todo))
     });    
     todoUpdate()
-    //checkboxArray = document.querySelectorAll("input[type=\"checkbox\"]")
 })
 .catch((error) => {
     todoContainer.innerHTML = `Error: ${error}`
