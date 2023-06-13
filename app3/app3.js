@@ -4,9 +4,9 @@ const todoContainer = document.querySelector("#todoContainer")
 let todoArray = []
 
 function todoTemplate(todo) {
-    return `<div class="flex gap-2 todo">
-                <button class="text-red-500">
-                    <img class="h-4" src="https://cdn2.iconfinder.com/data/icons/thin-line-color-1/21/33-512.png">
+    return `<div class="grid todoLine gap-2 todo">
+                <button>
+                    <img class="" src="https://cdn2.iconfinder.com/data/icons/thin-line-color-1/21/33-512.png">
                 </button>
                 <input type="checkbox" ${todo.completed ? "checked" :""}>
                 <p class="${todo.completed ? "line-through" :""}">${todo.todo}</p>

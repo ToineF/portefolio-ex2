@@ -5,16 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo List</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .todoLine {
+            grid-template-columns: 1fr 1fr 20fr;
+        }
+
+    </style>
 </head>
 <body>
     <div class="flex h-screen flex-col items-center gap-10 p-10">
         <div>
-            <input id="input" class="border-2 rounded border-pink-400 p-2 bg-white hover:bg-pink-300">
-            <button id="addButton" class="border-2 rounded border-pink-400 p-2 bg-white hover:bg-pink-300">
+            <input id="input" class="border-2 rounded border-green-400 p-2 bg-white hover:bg-green-100">
+            <button id="addButton" class="border-2 rounded border-green-400 p-2 bg-white hover:bg-green-300">
                 Hello
             </button>
         </div>
-        <div id="todoContainer" class="gap-1 flex flex-col w-100">
+        <div id="todoContainer" class="gap-1 flex flex-col w-96">
         </div>
         <a href="../index.html">
             <div class="flex justify-center items-center border-4 border-gray-700 bg-gray-200 mb-10">
