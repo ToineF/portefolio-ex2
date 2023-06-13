@@ -2,8 +2,6 @@ const input = document.querySelector("#input")
 const addButton = document.querySelector("#addButton")
 const todoContainer = document.querySelector("#todoContainer")
 let todoArray = []
-let todoDIVArray=[]
-
 
 function todoTemplate(todo) {
     return `<div class="flex gap-2 todo">
@@ -19,24 +17,28 @@ function todoTemplate(todo) {
 function todoUpdate() {
     todoContainer.innerHTML=""
     todoArray.forEach(todo => {
-        todoContainer.innerHTML += todo
+        todoContainer.innerHTML += todo.text
     })
-    todoDIVArray = Array.from(document.querySelectorAll(".todo"))
+    const todoDIVArray = Array.from(document.querySelectorAll(".todo"))
     todoDIVArray.forEach((todo,index) => {
-        const deleteButton = todo.children[0]
-        const checkbox = todo.children[1]
-        const line = todo.children[2].innerText
+        todoArray[index].div = todo
+    })
+    todoArray.forEach((todo,index) => {
+        const deleteButton = todo.div.children[0]
+        const checkbox = todo.div.children[1]
+        const line = todo.div.children[2].innerText
+
         deleteButton.addEventListener('click', () => {
-            todoDIVArray.splice(index,1)
             todoArray.splice(index,1)
             todoUpdate()
         })
+
         checkbox.addEventListener('click', () => {
             const newTodo = {
                 todo: line,
                 completed: checkbox.checked
             }
-            todoArray[index] = todoTemplate(newTodo)
+            todoArray[index].text = todoTemplate(newTodo)
             todoUpdate()
         })
     })
@@ -48,15 +50,15 @@ fetch("https://dummyjson.com/todos")
 .then(data => data.todos)
 .then(todos => {
     todos.forEach(todo => {
-        todoArray.push(todoTemplate(todo))
-    });    
+        todoArray.push({
+            text: todoTemplate(todo)
+        })
+    })
     todoUpdate()
 })
 .catch((error) => {
     todoContainer.innerHTML = `Error: ${error}`
-});
-
-
+})
 
 
 addButton.addEventListener('click', () => {
@@ -67,7 +69,9 @@ addButton.addEventListener('click', () => {
     if (!newTodo.todo) {
         return
     }
-    todoArray.unshift(todoTemplate(newTodo))
+    todoArray.unshift({
+        text: todoTemplate(newTodo)
+    })
     todoUpdate()
     input.value = ""
 })
