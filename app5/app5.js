@@ -19,8 +19,14 @@ cellsArray.forEach((cell, index) => {
     cell.innerHTML += `<p>${currentCell % 2 === 0 ? "X" : "O"}</p>`;
     cell.disabled = true;
     updateTable(index);
-    if (hasLine()) gameEnd(`${currentCell % 2 === 0 ? "X" : "O"} WINS`);
-    if (isComplete()) gameEnd("DRAW");
+    if (hasLine()) {
+      gameEnd(`${currentCell % 2 === 0 ? "X" : "O"} WINS`);
+      return;
+    }
+    if (isComplete()) {
+      gameEnd("DRAW");
+      return;
+    }
     currentCell++;
   });
 });
